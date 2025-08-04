@@ -127,11 +127,34 @@ public class DbUtils {
         updateDb(table_redis);
         updateDb(table_interval);
 
+
+        try {
+            updateDb(update_schedule_task);
+        } catch (SQLException e) {
+            if (!e.getMessage().contains("duplicate column")) {
+                throw e;
+            }
+        }
+        try {
+            updateDb(update_schedule_task2);
+        } catch (SQLException e) {
+            if (!e.getMessage().contains("duplicate column")) {
+                throw e;
+            }
+        }
         try {
             updateDb(update_task_add_csv_path);
+        } catch (SQLException e){
+            if (!e.getMessage().contains("duplicate column name")) {
+                throw e;
+            }
+        }
+        try {
             updateDb(update_task_add_export_type);
-        } catch (Exception e){
-            // ignore, column already exists
+        } catch (SQLException e){
+            if (!e.getMessage().contains("duplicate column name")) {
+                throw e;
+            }
         }
 
 
@@ -155,7 +178,7 @@ public class DbUtils {
        // updateDb(insert_interval);
     }
 
-    private void updateDb(String query){
+    private void updateDb(String query) throws SQLException {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
@@ -164,8 +187,6 @@ public class DbUtils {
         try(Connection connection = DriverManager.getConnection(url);
             Statement statement = connection.createStatement()){
             statement.execute(query);
-        }catch (SQLException e){
-            e.printStackTrace();
         }
     }
 

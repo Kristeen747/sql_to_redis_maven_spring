@@ -83,22 +83,22 @@ $.get( "/tasks", function(items) {
 
 function createSqlTask(item){
     let task = $('<div>',{
-                          class:'task'
+                          class:'task row' // Add .row class
                          }).attr('data-id',item.id);
 
-                        let leftInfo =  $('<div>', { class:'info'});
+                        let leftInfo =  $('<div>', { class:'col-6'}); // Use col-6 for left side
                         let taskType = $('<span>', {class: 'tag badge ' + item.taskType, text: item.taskType});
 
                         let settings = $('<div>', {
-                                               class:'settings'
-                                    });
+                                               class:'settings mt-2'
+                                     });
 
                          let tags1 = $('<div>', {
                                                class:'tags'
-                                    });
+                                     });
 
                         let name = $('<a>',{
-                                                   class:'name',
+                                                   class:'name d-block', // d-block for better layout
                                                    text: item.redisKey,
                                                    href:'/editSqlTask/' + item.id
                                                   });
@@ -122,7 +122,7 @@ function createSqlTask(item){
                         settings.append(name).append(tags1);
                         leftInfo.append(taskType).append(settings)
 
-                        let rightInfo = $('<div>', { class:'info'});
+                        let rightInfo = $('<div>', { class:'col-6 d-flex flex-column align-items-end'}); // col-6 for right side and flex for alignment
 
                         let tags = $('<div>', {
                                                class:'tags',
@@ -148,7 +148,7 @@ function createSqlTask(item){
                         tags.append(tag1).append(tag2).append(tag3).append(statusBadge);
 
                         var btnGroup = $('<div>',{
-                                        class:'btn-group'
+                                        class:'btn-group mt-2'
                                     });
                         var startBtn = $('<div>',{
                                          class:'btn btn-sm btn-light border start'
