@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Qsoft - Main</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row">
+        <div class="col-md-12 py-2 d-flex justify-content-between">
+
+            <div>
+                <a class="btn btn-light btn-sm border" th:href="@{/sql}">
+                    Tasks
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addSchedule}">
+                    Schedule
+                </a>
+            </div>
+
+            <div>
+                <a class="btn btn-light btn-sm border" th:href="@{/addSqlTask}">
+                    Add Sql
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addCsvTask}">
+                    Add Csv
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addKeyValue}">
+                    Add KeyValue
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addLoop}">
+                    Add Loop
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div id="url"></div>
+    </div>
+    <div class="row d-flex align-items-center">
+        <div class="col-md-3">
+            <label for="redisId" class="form-label">Redis</label>
+            <select size="5" class="form-select" aria-label="Default select example"
+                    id="redisId">
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="redisTable" class="form-label">Databases
+                <a class="btn btn-sm btn-light border" type="button" id="deleteDatabase">
+                    Delete
+                </a>
+            </label>
+            <select size="5" class="form-select" aria-label="Default select example"
+                    id="redisTable">
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="redisKey" class="form-label">Keys
+                <a class="btn btn-sm btn-light border" type="button" id="deleteKey">
+                    Delete
+                </a>
+            </label>
+            <select size="5" class="form-select" aria-label="Default select example"
+                    id="redisKey">
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input class="form-check-input" type="checkbox" value=""
+                   id="checkDefault">
+            <label class="form-check-label" for="checkDefault">
+                Unique Data
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="output" class="form-label">Data</label>
+            <textarea class="form-control" id="output" rows="5"></textarea>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/scripts.html :: redis}"></div>
+</div>
+</body>
+</html>

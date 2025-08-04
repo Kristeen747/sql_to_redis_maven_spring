@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+</head>
+<body>
+<!--header.html  that's here  -->
+<div th:replace="fragments/header :: header"></div>
+
+<div layout:fragment="content"></div>
+<!--footer.html  that's here  -->
+<div th:replace="fragments/footer :: footer"></div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

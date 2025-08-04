@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Quick Soft - Add csv task</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <form method="post" th:action="@{/addLoop}" th:object="${form}" id="form">
+
+        <div class="row">
+        <div class="col-md-4">
+            <label for="redisId" class="form-label">Redis</label><a th:href="@{/addRedis}">Add</a>
+            <select th:field="*{redisId}" size ="5" class="form-select" aria-label="Default select example" id="redisId">
+                <option th:each="db : ${toDbs}"
+                        th:text="${db.name}"
+                        th:value="${db.id}">
+            </select>
+        </div>
+            <div class="col-md-4">
+                <label for="redisTable" class="form-label">RedisTable</label>
+                <input th:field="*{redisTable}" type="text" class="form-control" id="redisTable">
+            </div>
+            <div class="col-md-4">
+                <label for="redisKey" class="form-label">RedisKey</label>
+                <input th:field="*{redisKey}" type="text" class="form-control" id="redisKey">
+            </div>
+            <div class="col-md-4">
+                <label for="fieldName" class="form-label">FieldName</label>
+                <input th:field="*{fieldName}" type="text" class="form-control" id="fieldName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="startValue" class="form-label">StartValue</label>
+                <input th:field="*{startValue}" type="text" class="form-control" id="startValue">
+            </div>
+            <div class="col-md-4">
+                <label for="endValue" class="form-label">EndValue</label>
+                <input th:field="*{endValue}" type="text" class="form-control" id="endValue">
+            </div>
+            <div class="col-md-4">
+                <label for="step" class="form-label">Step</label>
+                <input th:field="*{step}" type="text" class="form-control" id="step">
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                       <input class="btn btn-sm btn-secondary" type="submit" id="test" value="Save">
+                </div>
+            </div>
+
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="output" class="form-label">Output</label>
+            <div id="output"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

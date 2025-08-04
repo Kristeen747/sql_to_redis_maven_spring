@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Quick soft - Api</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row">
+        <div class="col-lg-10 col-md-8 mx-auto text-center">
+            <h3 class="fw-light">Redis - база данных для хранения данных в формате ключ-значение.</h3>
+            <p class="lead text-body-secondary">Ключ - строка. Значением может быть строка, список и другие дата-структуры.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Control Api</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-sm table-striped">
+                <thead>
+                <tr>
+                    <th>Http method</th>
+                    <th>Endpoint</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>POST</td>
+                    <td><code>/api/run/{task_id}</code></td>
+                    <td>Run task</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Data Api</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-sm table-striped">
+                <thead>
+                <tr>
+                    <th>Http method</th>
+                    <th>Endpoint</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td><code>/api/redis?redisId={redisId}&redisTable={redisTable}&redisKey={redisKey}&unique={true/false}</code></td>
+                    <td>Получить данные из редиса</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>
+                        <code>/api/redis</code>
+                        <pre>
+                            FormData
+
+                            redisId: {redisId}
+                            redisKey: {redisKey}
+                            redisTable: {redisTable}
+                            file: (binary)
+                        </pre>
+                    </td>
+                    <td>Отправить csv-файл</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>
+                        <code>/api/redis</code>
+                        <pre>
+                            {
+                            "redisId": {redisId},
+                            "redisTable": {redisTable},
+                            "redisKey": "{redisKey}",
+                            "redisValue": {redisValue}
+                            }
+                        </pre>
+                    </td>
+                    <td>Отправить key-value</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

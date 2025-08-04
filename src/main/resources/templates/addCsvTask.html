@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Quick Soft - Add csv task</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <form method="post" th:action="@{/addCsvTask}" th:object="${form}" enctype="multipart/form-data" id="form">
+
+        <div class="row">
+        <div class="col-md-4">
+            <label for="redisId" class="form-label">Redis</label><a th:href="@{/addRedis}">Add</a>
+            <select th:field="*{redisId}" size ="5" class="form-select" aria-label="Default select example" id="redisId">
+                <option th:each="db : ${toDbs}"
+                        th:text="${db.name}"
+                        th:value="${db.id}">
+            </select>
+        </div>
+            <div class="col-md-4">
+                <label for="redisKey" class="form-label">RedisKey</label>
+                <input th:field="*{redisKey}" type="text" class="form-control" id="redisKey">
+            </div>
+            <div class="col-md-4">
+                <label for="redisTable" class="form-label">RedisTable</label>
+                <input th:field="*{redisTable}" type="text" class="form-control" id="redisTable">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="file" class="form-label">File</label>
+                <input th:field="*{file}" type="file" class="form-control" id="file">
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                       <a class="btn btn-sm btn-secondary" type="button" id="test">
+                           Save
+                       </a>
+                </div>
+            </div>
+
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="output" class="form-label">Output</label>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-12" id="tasks">
+
+            </div>
+    </div>
+    <div th:replace = "~{fragments/scripts.html :: csv}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+package ru.riji.sql_to_influx.mappers;public class StringMapper {
+}

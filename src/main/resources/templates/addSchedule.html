@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Quick Soft - Add sql task</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+
+    <form method="post" th:action="@{/addSchedule}" th:object="${form}" id="form">
+        <input type="hidden" class="form-control" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="startAt" class="form-label">StartAt</label>
+                <input  th:field="*{startAt}" type="datetime-local" class="form-control" id="startAt">
+            </div>
+            <div class="col-md-3">
+                <label for="interval" class="form-label">Interval</label><a th:href="@{/addInterval}">Add</a>
+                <select size="5" class="form-select" th:field="*{interval}" aria-label="Default select example"
+                        id="interval">
+                    <option th:each="interval : ${intervals}"
+                            th:text="${interval.name}"
+                            th:value="${interval.value}">
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="taskId" class="form-label">Task</label>
+                <select multiple th:field="*{taskId}" size="5" class="form-select" aria-label="Default select example"
+                        id="taskId">
+                    <option th:each="task : ${tasks}"
+                            th:text="${task.redisKey}"
+                            th:value="${task.id}">
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="cronExp" class="form-label">CronExp</label>
+                <input th:field="*{cronExp}" type="text" class="form-control" id="cronExp">
+            </div>
+        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group">
+                            <input type="submit" class="btn btn-sm btn-secondary" value="Save">
+                        </div>
+                    </div>
+                </div>
+    </form>
+
+    <div class="row">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>Task</th>
+                <th>StartAt</th>
+                <th>Interval</th>
+                <th>CronExp</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.startAt}"></td>
+                <td th:text="${item.interval}"></td>
+                <td th:text="${item.cronExp}"></td>
+                <td>
+                    <div class="btn-group">
+                        <form th:action="@{/deleteSchedule}" method="post">
+                            <button class="btn btn-sm" type="submit" th:name="id" th:value="${item.id}">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

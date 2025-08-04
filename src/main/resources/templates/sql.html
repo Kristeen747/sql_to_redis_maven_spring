@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Qsoft - Tasks</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row">
+        <div class="col-md-12 py-2 d-flex justify-content-between">
+
+            <div>
+                <a class="btn btn-light btn-sm border" th:href="@{/addSqlTask}">
+                    Add Sql
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addCsvTask}">
+                    Add Csv
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addKeyValue}">
+                    Add KeyValue
+                </a>
+                <a class="btn btn-light btn-sm border" th:href="@{/addLoop}">
+                    Add Loop
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="tasks"></div>
+        </div>
+    </div>
+    <div th:replace = "~{fragments/scripts.html :: main}"></div>
+</div>
+</body>
+</html>
